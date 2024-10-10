@@ -11,12 +11,20 @@ class ItemPedido extends Model
     use HasFactory;
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'itens_pedido';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'valor',
+        'valor_unitario',
+        'quantidade',
         'produto_id',
         'pedido_id',
     ];

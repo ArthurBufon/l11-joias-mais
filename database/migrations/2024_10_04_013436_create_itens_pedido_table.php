@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('itens_pedido', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('valor');
+            $table->integer('valor_unitario');
+            $table->integer('quantidade');
 
             $table->foreignId('produto_id')
                 ->constrained()
