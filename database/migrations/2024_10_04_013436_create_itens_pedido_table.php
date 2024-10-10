@@ -13,6 +13,19 @@ return new class extends Migration
     {
         Schema::create('itens_pedido', function (Blueprint $table) {
             $table->id();
+
+            $table->integer('valor');
+
+            $table->foreignId('produto_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->foreignId('pedido_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

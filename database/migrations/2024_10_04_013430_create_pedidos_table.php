@@ -13,6 +13,21 @@ return new class extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
+
+            $table->integer('valor');
+            $table->integer('acrescimos')->nullable();
+            $table->integer('descontos')->nullable();
+
+            $table->foreignId('cliente_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->foreignId('vendedor_id')
+                ->constrained(table: 'vendedores')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }
