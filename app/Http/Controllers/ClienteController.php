@@ -5,15 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Http\Requests\StoreClienteRequest;
 use App\Http\Requests\UpdateClienteRequest;
+use App\Services\Cliente\QueryService;
+use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
+    public function __construct(private QueryService $queries)
+    {
+        //
+    }
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $clientes = $this->queries->getByCustom($request->all());
+
+        return response()->json(status: 200, data: ['data' => $clientes]);
     }
 
     /**
